@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lin — 个人主页</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ===== Reset ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Inter', 'Noto Serif SC', -apple-system, sans-serif;
+  font-weight: 400;
+  color: #2c2a26;
+  background: #fafaf7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== SECTION LAYOUT ===== */
+.section {
+  padding: 120px 0;
+  position: relative;
+}
+.section-sm { padding: 80px 0; }
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+.container-narrow {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ===== PAINTING INTERLUDE ===== */
+.painting-interlude {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+}
+
+.painting-interlude img {
+  display: block;
+  width: 100%;
+  height: 70vh;
+  object-fit: cover;
+}
+
+.painting-label {
+  position: absolute;
+  bottom: 24px;
+  right: 32px;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.06em;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  pointer-events: none;
+}
+
+/* ===== HERO ===== */
+.hero-section {
+  padding: 100px 0 80px;
+}
+
+.hero-grid {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-pre-title {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(44,42,38,0.35);
+  margin-bottom: 16px;
+}
+
+.hero-name {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 4.2rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  color: #2c2a26;
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(44,42,38,0.55);
+  margin-bottom: 36px;
+}
+
+.hero-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.hero-link-primary {
+  display: inline-block;
+  padding: 12px 28px;
+  background: #2c2a26;
+  color: #fafaf7;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  transition: all 0.3s ease;
+}
+
+.hero-link-primary:hover {
+  background: #4a4842;
+  transform: translateY(-1px);
+}
+
+.hero-link-secondary {
+  display: inline-block;
+  padding: 12px 0;
+  color: rgba(44,42,38,0.5);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid rgba(44,42,38,0.15);
+  transition: all 0.3s ease;
+}
+
+.hero-link-secondary:hover {
+  color: #2c2a26;
+  border-bottom-color: #2c2a26;
+}
+
+.hero-visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-painting {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== ABOUT ===== */
+.about-text {
+  font-size: 1.05rem;
+  line-height: 2;
+  color: rgba(44,42,38,0.55);
+  font-weight: 300;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.tag-item {
+  padding: 8px 18px;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: rgba(44,42,38,0.5);
+  border: 1px solid rgba(44,42,38,0.1);
+  border-radius: 100px;
+  letter-spacing: 0.03em;
+  transition: all 0.3s ease;
+}
+
+.tag-item:hover {
+  border-color: rgba(44,42,38,0.25);
+  color: #2c2a26;
+}
+
+.tag-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(44,42,38,0.3);
+  margin-bottom: 6px;
+  width: 100%;
+}
+
+/* ===== PROJECTS ===== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.project-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.project-card .project-number {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: rgba(44,42,38,0.25);
+  margin-bottom: 16px;
+}
+
+.project-card h4 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #2c2a26;
+  margin-bottom: 10px;
+  letter-spacing: 0.03em;
+}
+
+.project-card p {
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(44,42,38,0.45);
+}
+
+.project-card .project-arrow {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: rgba(44,42,38,0.3);
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-arrow {
+  color: #2c2a26;
+  transform: translateX(3px);
+}
+
+/* ===== CHAT ===== */
+.chat-container {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.chat-card {
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.chat-header-bar {
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.chat-avatar-circle {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  background: #fafaf7;
+}
+
+.chat-header-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #2c2a26;
+}
+
+.chat-header-status {
+  font-size: 0.7rem;
+  color: rgba(44,42,38,0.35);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.chat-status-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #7d9d6a;
+}
+
+.chat-messages-area {
+  height: 330px;
+  overflow-y: auto;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: #fdfdfc;
+}
+
+.chat-messages-area::-webkit-scrollbar { width: 3px; }
+.chat-messages-area::-webkit-scrollbar-track { background: transparent; }
+.chat-messages-area::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.08); border-radius: 2px; }
+
+.msg-bubble {
+  max-width: 70%;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.7;
+  animation: msgIn 0.4s ease-out;
+}
+
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.msg-bubble.msg-avatar {
+  align-self: flex-start;
+  background: #f5f5f2;
+  border: 1px solid rgba(0,0,0,0.05);
+  border-bottom-left-radius: 3px;
+  color: rgba(44,42,38,0.65);
+}
+
+.msg-bubble.msg-user {
+  align-self: flex-end;
+  background: #f0f0ed;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-bottom-right-radius: 3px;
+  color: rgba(44,42,38,0.7);
+}
+
+.msg-bubble .msg-sender-label {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.3;
+  margin-bottom: 3px;
+}
+
+.chat-typing {
+  align-self: flex-start;
+  display: flex;
+  gap: 4px;
+  padding: 14px 18px;
+  background: #f5f5f2;
+  border: 1px solid rgba(0,0,0,0.04);
+  border-radius: 10px;
+  border-bottom-left-radius: 3px;
+}
+
+.chat-typing .tdot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.15);
+  animation: tdotBounce 1.4s infinite both;
+}
+.chat-typing .tdot:nth-child(2) { animation-delay: 0.2s; }
+.chat-typing .tdot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes tdotBounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.1; }
+  40% { transform: translateY(-5px); opacity: 0.6; }
+}
+
+.chat-input-bar {
+  padding: 16px 28px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  display: flex;
+  gap: 10px;
+  background: #fff;
+}
+
+.chat-input-bar input {
+  flex: 1;
+  padding: 11px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: #fdfdfc;
+  color: #2c2a26;
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 0.86rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.chat-input-bar input::placeholder { color: rgba(44,42,38,0.2); }
+.chat-input-bar input:focus { border-color: rgba(0,0,0,0.25); }
+
+.chat-input-bar button {
+  padding: 11px 22px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: #fdfdfc;
+  color: rgba(44,42,38,0.5);
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 0.84rem;
+  letter-spacing: 0.04em;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.chat-input-bar button:hover {
+  background: #f5f5f2;
+  border-color: rgba(0,0,0,0.25);
+  color: #2c2a26;
+}
+
+/* ===== CONTACT ===== */
+.contact-text {
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: rgba(44,42,38,0.45);
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.contact-link-row {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+}
+
+.contact-link-item {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgba(44,42,38,0.4);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+  padding-bottom: 3px;
+}
+
+.contact-link-item:hover {
+  color: #2c2a26;
+  border-bottom-color: #2c2a26;
+}
+
+/* ===== FOOTER ===== */
+.footer-bar {
+  padding: 40px 0;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: rgba(44,42,38,0.2);
+  letter-spacing: 0.1em;
+}
+
+/* ===== SECTION TITLES ===== */
+.sec-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(44,42,38,0.3);
+  margin-bottom: 12px;
+}
+
+.sec-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #2c2a26;
+  margin-bottom: 36px;
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .hero-grid {
+    flex-direction: column-reverse;
+    gap: 48px;
+    text-align: center;
+  }
+  .hero-painting { max-width: 380px; }
+  .hero-name { font-size: 3rem; }
+  .hero-links { justify-content: center; }
+
+  .projects-grid { grid-template-columns: 1fr; gap: 40px; }
+  .container, .container-narrow, .hero-grid { padding: 0 28px; }
+  .section { padding: 80px 0; }
+
+  .painting-interlude img { height: 50vh; }
+}
+
+@media (max-width: 480px) {
+  .hero-name { font-size: 2.4rem; }
+  .hero-title { font-size: 1rem; }
+  .hero-painting { max-width: 300px; }
+  .sec-title { font-size: 1.5rem; }
+  .about-text { font-size: 0.92rem; }
+  .container, .container-narrow, .hero-grid { padding: 0 18px; }
+  .section { padding: 60px 0; }
+  .chat-messages-area { height: 260px; padding: 16px; }
+  .msg-bubble { max-width: 82%; }
+  .chat-input-bar { flex-direction: column; padding: 12px 16px; }
+  .contact-link-row { gap: 20px; }
+  .project-card h4 { font-size: 1.1rem; }
+  .painting-interlude img { height: 40vh; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero-section section reveal">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <div class="hero-pre-title">Full-Stack Developer &amp; Creator</div>
+      <h1 class="hero-name">Lin</h1>
+      <p class="hero-title">
+        构建有温度的数字产品。<br>
+        相信好的代码和好的风景一样，值得慢慢品味。
+      </p>
+      <div class="hero-links">
+        <a href="#projects" class="hero-link-primary">查看作品</a>
+        <a href="#contact" class="hero-link-secondary">联系我</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img
+        class="hero-painting"
+        src="https://commons.wikimedia.org/wiki/Special:FilePath/Claude_Monet_-_Poppy_Field_-_Google_Art_Project.jpg"
+        alt="Claude Monet — Poppy Field near Argenteuil, 1873"
+        loading="eager"
+      >
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="section section-sm reveal">
+  <div class="container-narrow">
+    <div class="sec-label">About</div>
+    <h2 class="sec-title">关于我</h2>
+    <p class="about-text">
+      你好，我是 Lin。我写代码、画油画、泡茶、徒步。<br>
+      我相信好的技术应该像一块湿地——有自己的生态、能自我调节、容许意外发生。<br>
+      目前在寻找那些处于代码与人文交叉点上的问题。
+    </p>
+    <div class="tag-row">
+      <span class="tag-label">技术栈</span>
+      <span class="tag-item">Python</span>
+      <span class="tag-item">TypeScript</span>
+      <span class="tag-item">React</span>
+      <span class="tag-item">Node.js</span>
+      <span class="tag-item">Go</span>
+      <span class="tag-item">Docker</span>
+      <span class="tag-item">PostgreSQL</span>
+      <span class="tag-item">AWS</span>
+    </div>
+    <div class="tag-row">
+      <span class="tag-label">关注领域</span>
+      <span class="tag-item">全栈开发</span>
+      <span class="tag-item">AI / LLM</span>
+      <span class="tag-item">创意编程</span>
+      <span class="tag-item">户外探索</span>
+      <span class="tag-item">阅读写作</span>
+      <span class="tag-item">茶道</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MOUNTAIN PAINTING ===== -->
+<section class="painting-interlude reveal" style="position:relative">
+  <img
+    src="https://commons.wikimedia.org/wiki/Special:FilePath/Paul_Cézanne_-_Mont_Sainte-Victoire_-_Google_Art_Project.jpg"
+    alt="Paul Cézanne — Mont Sainte-Victoire, c.1890"
+    loading="lazy"
+  >
+  <span class="painting-label">Paul Cézanne · Mont Sainte-Victoire</span>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section class="section section-sm reveal" id="projects">
+  <div class="container">
+    <div class="sec-label">Selected Work</div>
+    <h2 class="sec-title">精选项目</h2>
+    <div class="projects-grid">
+
+      <a href="#" class="project-card">
+        <div class="project-number">01</div>
+        <h4>林中画室</h4>
+        <p>一个融合数字分身与油画美学的个人主页实验。探索视觉叙事的边界。</p>
+        <span class="project-arrow">了解详情 →</span>
+      </a>
+
+      <a href="#" class="project-card">
+        <div class="project-number">02</div>
+        <h4>雨声生成器</h4>
+        <p>基于 Web Audio API 的环境音生成工具。用代码模拟雨滴落在不同材质上的声音。</p>
+        <span class="project-arrow">了解详情 →</span>
+      </a>
+
+      <a href="#" class="project-card">
+        <div class="project-number">03</div>
+        <h4>轻量知识库</h4>
+        <p>面向个人使用的本地知识管理工具。Markdown + 双向链接 + 全文搜索。</p>
+        <span class="project-arrow">了解详情 →</span>
+      </a>
+
+      <a href="#" class="project-card">
+        <div class="project-number">04</div>
+        <h4>PlantMind</h4>
+        <p>一个帮助识别和记录植物的移动端应用。融合计算机视觉与园艺知识图谱。</p>
+        <span class="project-arrow">了解详情 →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOREST PAINTING ===== -->
+<section class="painting-interlude reveal" style="position:relative">
+  <img
+    src="https://commons.wikimedia.org/wiki/Special:FilePath/Claude_Monet_-_Water_Lilies_and_Japanese_Bridge_-_Google_Art_Project.jpg"
+    alt="Claude Monet — Water Lilies and Japanese Bridge, 1897–1899"
+    loading="lazy"
+  >
+  <span class="painting-label">Claude Monet · Water Lilies &amp; Japanese Bridge</span>
+</section>
+
+<!-- ===== CHAT ===== -->
+<section class="section section-sm reveal">
+  <div class="container-narrow">
+    <div class="sec-label">Digital Twin</div>
+    <h2 class="sec-title">与我的数字分身聊聊</h2>
+    <div class="chat-card" id="chatCard">
+      <div class="chat-header-bar">
+        <div class="chat-avatar-circle">🎨</div>
+        <div>
+          <div class="chat-header-name">Lin · 数字分身</div>
+          <div class="chat-header-status"><span class="chat-status-dot"></span>在线</div>
+        </div>
+      </div>
+      <div class="chat-messages-area" id="chatMessages"></div>
+      <div class="chat-input-bar">
+        <input type="text" id="chatInput" placeholder="说点什么..." autocomplete="off">
+        <button id="sendBtn">发送</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WATERSCAPE PAINTING ===== -->
+<section class="painting-interlude reveal" style="position:relative">
+  <img
+    src="https://commons.wikimedia.org/wiki/Special:FilePath/Monet_-_Impression,_Sunrise.jpg"
+    alt="Claude Monet — Impression, Sunrise, 1872"
+    loading="lazy"
+  >
+  <span class="painting-label">Claude Monet · Impression, Sunrise</span>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section section-sm reveal" id="contact">
+  <div class="container-narrow">
+    <div class="sec-label">Contact</div>
+    <h2 class="sec-title" style="text-align:center">联系我</h2>
+    <p class="contact-text">无论你想聊聊技术、艺术，还是打个招呼——都很欢迎。</p>
+    <div class="contact-link-row">
+      <a href="mailto:your@email.com" class="contact-link-item">Email</a>
+      <a href="https://github.com" class="contact-link-item" target="_blank" rel="noopener">GitHub</a>
+      <a href="#" class="contact-link-item">Blog</a>
+      <a href="#" class="contact-link-item">Twitter/X</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer-bar reveal">
+  <p>© 2026 Lin · 建于代码与画笔之间</p>
+</footer>
+
+<script>
+// ===== PERSONA & CHAT =====
+const persona = {
+  name: 'Lin',
+  greeting: '你好呀，我是 Lin 的数字分身。想了解我的技术栈、做过的项目，还是想随便聊聊？',
+  rules: [
+    {
+      keywords: ['你好','嗨','hello','hi','hey'],
+      responses: ['你好！今天的光线正好，适合聊点什么。','嗨，欢迎。我这儿随时有好话题。','你好呀，有什么想聊的？']
+    },
+    {
+      keywords: ['你是谁','介绍','你是谁呀','你是'],
+      responses: ['我是 Lin 的数字分身——用代码和油画一起构建的对话代理。真身可能在写代码，或在山里徒步，但我永远在这儿。']
+    },
+    {
+      keywords: ['技术','tech','stack','python','react','前端','后端','编程','代码'],
+      responses: ['Lin 做全栈开发，从 React 到 Go 都有涉及。最近对 AI 和 LLM 应用特别感兴趣。上面有四个精选项目，你可以看看。']
+    },
+    {
+      keywords: ['项目','作品','project'],
+      responses: ['上面有四个项目：林中画室、雨声生成器、轻量知识库和 PlantMind。每个都有自己的故事。']
+    },
+    {
+      keywords: ['爱好','兴趣','hobby','喜欢','平时','生活'],
+      responses: ['除了写代码，Lin 画油画、泡茶、徒步。最理想的周末：上午山间，下午画室，晚上好书配好茶。']
+    },
+    {
+      keywords: ['自然','森林','户外','山','植物','树','海'],
+      responses: ['Lin 对自然有种近乎偏执的热爱。据说写代码的灵感来源之一就是树的结构——分支、层次、递归。']
+    },
+    {
+      keywords: ['艺术','油画','画','水彩','画画','莫奈','塞尚','印象派'],
+      responses: ['Lin 画画，风格偏向自然风景。他说写代码和画画很像——都需要层次感、都需要留白、都需要接受不完美。']
+    },
+    {
+      keywords: ['工作','职业','面试','hire','招聘'],
+      responses: ['Lin 有全栈开发经验，从早期创业到成熟产品都待过。想深入聊工作的事，建议直接联系他本人。']
+    },
+    {
+      keywords: ['谢谢','感谢','thx'],
+      responses: ['不客气！随时回来聊。','谢谢你来看这个页面。']
+    },
+    {
+      keywords: ['再见','拜拜','bye','走了'],
+      responses: ['下次见！这里的风景会一直等着你。','拜拜～祝你的 bug 一眼看穿。']
+    }
+  ],
+  defaultResponses: [
+    '嗯…这个问题有意思。Lin 可能没给我配好对应的回答。换个话题？',
+    '这个问题超出了我的知识范围。试试聊聊技术、自然、艺术？'
+  ],
+  thinkingDelay: [800, 2000],
+  typingSpeed: 35
+};
+
+function findResponse(input) {
+  const lower = input.toLowerCase();
+  for (const rule of persona.rules) {
+    if (rule.keywords.some(kw => lower.includes(kw))) return rule.responses[Math.floor(Math.random()*rule.responses.length)];
+  }
+  return persona.defaultResponses[Math.floor(Math.random()*persona.defaultResponses.length)];
+}
+function randomDelay() { const [min,max] = persona.thinkingDelay; return Math.floor(Math.random()*(max-min+1))+min; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+const chatMessages = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
+const sendBtn = document.getElementById('sendBtn');
+
+function createBubble(sender, text) {
+  const el = document.createElement('div');
+  el.className = `msg-bubble ${sender==='avatar'?'msg-avatar':'msg-user'}`;
+  el.innerHTML = `<div class="msg-sender-label">${sender==='avatar'?persona.name:'你'}</div><div>${text}</div>`;
+  return el;
+}
+function showTyping() {
+  const el = document.createElement('div'); el.className = 'chat-typing'; el.id = 'typingIndicator';
+  for (let i=0;i<3;i++) { const d=document.createElement('div'); d.className='tdot'; el.appendChild(d); }
+  chatMessages.appendChild(el); chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+function hideTyping() { const el=document.getElementById('typingIndicator'); if(el) el.remove(); }
+
+async function typeBubble(text) {
+  const bubble = document.createElement('div');
+  bubble.className = 'msg-bubble msg-avatar';
+  bubble.innerHTML = `<div class="msg-sender-label">${persona.name}</div><div class="content"></div>`;
+  const content = bubble.querySelector('.content');
+  chatMessages.appendChild(bubble);
+  for (let i=0;i<text.length;i++) { content.textContent+=text[i]; chatMessages.scrollTop=chatMessages.scrollHeight; await sleep(persona.typingSpeed); }
+}
+
+let busy = false;
+async function sendMessage() {
+  const text = chatInput.value.trim();
+  if (!text || busy) return;
+  busy = true; chatInput.value = ''; chatInput.disabled = true; sendBtn.disabled = true;
+  chatMessages.appendChild(createBubble('user', text));
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  showTyping(); await sleep(randomDelay()); hideTyping();
+  await typeBubble(findResponse(text));
+  chatInput.disabled = false; sendBtn.disabled = false; chatInput.focus(); busy = false;
+}
+sendBtn.addEventListener('click', sendMessage);
+chatInput.addEventListener('keydown', e => { if(e.key==='Enter'){e.preventDefault();sendMessage();} });
+async function greet() { await sleep(600); await typeBubble(persona.greeting); }
+greet();
+
+// ===== REVEAL =====
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+
+</body>
+</html>
