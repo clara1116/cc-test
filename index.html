@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lin — 个人主页</title>
+<title>刘美辰 — 个人主页</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -162,13 +162,15 @@ body {
   justify-content: center;
 }
 
-.hero-painting {
+.hero-avatar {
   width: 100%;
-  max-width: 520px;
-  height: auto;
-  aspect-ratio: 4/3;
+  max-width: 300px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
   object-fit: cover;
   display: block;
+  background: #f0ede8;
+  border: 1px solid rgba(0,0,0,0.06);
 }
 
 /* ===== ABOUT ===== */
@@ -177,6 +179,17 @@ body {
   line-height: 2;
   color: rgba(44,42,38,0.55);
   font-weight: 300;
+}
+
+.about-highlight {
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: rgba(44,42,38,0.5);
+  padding: 20px 24px;
+  border-left: 2px solid rgba(44,42,38,0.15);
+  margin-top: 28px;
+  background: rgba(0,0,0,0.015);
 }
 
 .tag-row {
@@ -210,58 +223,6 @@ body {
   color: rgba(44,42,38,0.3);
   margin-bottom: 6px;
   width: 100%;
-}
-
-/* ===== PROJECTS ===== */
-.projects-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-}
-
-.project-card {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.project-card .project-number {
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  color: rgba(44,42,38,0.25);
-  margin-bottom: 16px;
-}
-
-.project-card h4 {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: #2c2a26;
-  margin-bottom: 10px;
-  letter-spacing: 0.03em;
-}
-
-.project-card p {
-  font-size: 0.9rem;
-  font-weight: 300;
-  line-height: 1.8;
-  color: rgba(44,42,38,0.45);
-}
-
-.project-card .project-arrow {
-  display: inline-block;
-  margin-top: 18px;
-  font-size: 0.8rem;
-  font-weight: 400;
-  color: rgba(44,42,38,0.3);
-  letter-spacing: 0.05em;
-  transition: all 0.3s ease;
-}
-
-.project-card:hover .project-arrow {
-  color: #2c2a26;
-  transform: translateX(3px);
 }
 
 /* ===== CHAT ===== */
@@ -521,11 +482,10 @@ body {
     gap: 48px;
     text-align: center;
   }
-  .hero-painting { max-width: 380px; }
+  .hero-avatar { max-width: 220px; }
   .hero-name { font-size: 3rem; }
   .hero-links { justify-content: center; }
 
-  .projects-grid { grid-template-columns: 1fr; gap: 40px; }
   .container, .container-narrow, .hero-grid { padding: 0 28px; }
   .section { padding: 80px 0; }
 
@@ -535,7 +495,7 @@ body {
 @media (max-width: 480px) {
   .hero-name { font-size: 2.4rem; }
   .hero-title { font-size: 1rem; }
-  .hero-painting { max-width: 300px; }
+  .hero-avatar { max-width: 180px; }
   .sec-title { font-size: 1.5rem; }
   .about-text { font-size: 0.92rem; }
   .container, .container-narrow, .hero-grid { padding: 0 18px; }
@@ -544,8 +504,8 @@ body {
   .msg-bubble { max-width: 82%; }
   .chat-input-bar { flex-direction: column; padding: 12px 16px; }
   .contact-link-row { gap: 20px; }
-  .project-card h4 { font-size: 1.1rem; }
   .painting-interlude img { height: 40vh; }
+  .about-highlight { padding: 16px 18px; font-size: 0.8rem; }
 }
 </style>
 </head>
@@ -555,62 +515,29 @@ body {
 <section class="hero-section section reveal">
   <div class="hero-grid">
     <div class="hero-text">
-      <div class="hero-pre-title">Full-Stack Developer &amp; Creator</div>
-      <h1 class="hero-name">Lin</h1>
+      <div class="hero-pre-title">AI 产品学习者 · 准研究生</div>
+      <h1 class="hero-name">刘美辰</h1>
       <p class="hero-title">
-        构建有温度的数字产品。<br>
-        相信好的代码和好的风景一样，值得慢慢品味。
+        一个正在学习用 AI 做产品的准研究生。<br>
+        好奇心很重，头发是黑金渐层短毛。
       </p>
       <div class="hero-links">
-        <a href="#projects" class="hero-link-primary">查看作品</a>
+        <a href="#chat" class="hero-link-primary">和我的数字分身聊聊</a>
         <a href="#contact" class="hero-link-secondary">联系我</a>
       </div>
     </div>
     <div class="hero-visual">
       <img
-        class="hero-painting"
+        class="hero-avatar"
         src="https://commons.wikimedia.org/wiki/Special:FilePath/Claude_Monet_-_Poppy_Field_-_Google_Art_Project.jpg"
-        alt="Claude Monet — Poppy Field near Argenteuil, 1873"
+        alt="头像占位"
         loading="eager"
       >
     </div>
   </div>
 </section>
 
-<!-- ===== ABOUT ===== -->
-<section class="section section-sm reveal">
-  <div class="container-narrow">
-    <div class="sec-label">About</div>
-    <h2 class="sec-title">关于我</h2>
-    <p class="about-text">
-      你好，我是 Lin。我写代码、画油画、泡茶、徒步。<br>
-      我相信好的技术应该像一块湿地——有自己的生态、能自我调节、容许意外发生。<br>
-      目前在寻找那些处于代码与人文交叉点上的问题。
-    </p>
-    <div class="tag-row">
-      <span class="tag-label">技术栈</span>
-      <span class="tag-item">Python</span>
-      <span class="tag-item">TypeScript</span>
-      <span class="tag-item">React</span>
-      <span class="tag-item">Node.js</span>
-      <span class="tag-item">Go</span>
-      <span class="tag-item">Docker</span>
-      <span class="tag-item">PostgreSQL</span>
-      <span class="tag-item">AWS</span>
-    </div>
-    <div class="tag-row">
-      <span class="tag-label">关注领域</span>
-      <span class="tag-item">全栈开发</span>
-      <span class="tag-item">AI / LLM</span>
-      <span class="tag-item">创意编程</span>
-      <span class="tag-item">户外探索</span>
-      <span class="tag-item">阅读写作</span>
-      <span class="tag-item">茶道</span>
-    </div>
-  </div>
-</section>
-
-<!-- ===== MOUNTAIN PAINTING ===== -->
+<!-- ===== PAINTING INTERLUDE 1 ===== -->
 <section class="painting-interlude reveal" style="position:relative">
   <img
     src="https://commons.wikimedia.org/wiki/Special:FilePath/Paul_Cézanne_-_Mont_Sainte-Victoire_-_Google_Art_Project.jpg"
@@ -620,46 +547,46 @@ body {
   <span class="painting-label">Paul Cézanne · Mont Sainte-Victoire</span>
 </section>
 
-<!-- ===== PROJECTS ===== -->
-<section class="section section-sm reveal" id="projects">
-  <div class="container">
-    <div class="sec-label">Selected Work</div>
-    <h2 class="sec-title">精选项目</h2>
-    <div class="projects-grid">
-
-      <a href="#" class="project-card">
-        <div class="project-number">01</div>
-        <h4>林中画室</h4>
-        <p>一个融合数字分身与油画美学的个人主页实验。探索视觉叙事的边界。</p>
-        <span class="project-arrow">了解详情 →</span>
-      </a>
-
-      <a href="#" class="project-card">
-        <div class="project-number">02</div>
-        <h4>雨声生成器</h4>
-        <p>基于 Web Audio API 的环境音生成工具。用代码模拟雨滴落在不同材质上的声音。</p>
-        <span class="project-arrow">了解详情 →</span>
-      </a>
-
-      <a href="#" class="project-card">
-        <div class="project-number">03</div>
-        <h4>轻量知识库</h4>
-        <p>面向个人使用的本地知识管理工具。Markdown + 双向链接 + 全文搜索。</p>
-        <span class="project-arrow">了解详情 →</span>
-      </a>
-
-      <a href="#" class="project-card">
-        <div class="project-number">04</div>
-        <h4>PlantMind</h4>
-        <p>一个帮助识别和记录植物的移动端应用。融合计算机视觉与园艺知识图谱。</p>
-        <span class="project-arrow">了解详情 →</span>
-      </a>
-
+<!-- ===== ABOUT ===== -->
+<section class="section section-sm reveal">
+  <div class="container-narrow">
+    <div class="sec-label">About</div>
+    <h2 class="sec-title">关于我</h2>
+    <p class="about-text">
+      你好，我是刘美辰。一个正在学习用 AI 做产品的准研究生。<br>
+      目前在系统学习 vibecoding、AI 产品基础知识、以及商业化相关的内容。<br>
+      相信好的产品始于对用户的深刻理解和对技术的持续好奇。
+    </p>
+    <div class="about-highlight">
+      ✦ 头发是黑金渐层短毛，好奇心很重 —— 这大概是我给人印象最深的地方。
+    </div>
+    <div class="tag-row">
+      <span class="tag-label">正在学习</span>
+      <span class="tag-item">Vibecoding</span>
+      <span class="tag-item">AI 产品</span>
+      <span class="tag-item">商业化</span>
+      <span class="tag-item">知识沉淀</span>
+    </div>
+    <div class="tag-row">
+      <span class="tag-label">兴趣爱好</span>
+      <span class="tag-item">唱歌</span>
+      <span class="tag-item">游泳</span>
+      <span class="tag-item">徒步</span>
+      <span class="tag-item">滑雪</span>
+      <span class="tag-item">潜水</span>
+      <span class="tag-item">旅游</span>
+    </div>
+    <div class="tag-row">
+      <span class="tag-label">关心方向</span>
+      <span class="tag-item">知识整理</span>
+      <span class="tag-item">内容表达</span>
+      <span class="tag-item">互联网行业</span>
+      <span class="tag-item">AI 前沿</span>
     </div>
   </div>
 </section>
 
-<!-- ===== FOREST PAINTING ===== -->
+<!-- ===== PAINTING INTERLUDE 2 ===== -->
 <section class="painting-interlude reveal" style="position:relative">
   <img
     src="https://commons.wikimedia.org/wiki/Special:FilePath/Claude_Monet_-_Water_Lilies_and_Japanese_Bridge_-_Google_Art_Project.jpg"
@@ -670,15 +597,15 @@ body {
 </section>
 
 <!-- ===== CHAT ===== -->
-<section class="section section-sm reveal">
+<section class="section section-sm reveal" id="chat">
   <div class="container-narrow">
     <div class="sec-label">Digital Twin</div>
     <h2 class="sec-title">与我的数字分身聊聊</h2>
     <div class="chat-card" id="chatCard">
       <div class="chat-header-bar">
-        <div class="chat-avatar-circle">🎨</div>
+        <div class="chat-avatar-circle">🐱</div>
         <div>
-          <div class="chat-header-name">Lin · 数字分身</div>
+          <div class="chat-header-name">刘美辰 · 数字分身</div>
           <div class="chat-header-status"><span class="chat-status-dot"></span>在线</div>
         </div>
       </div>
@@ -691,85 +618,78 @@ body {
   </div>
 </section>
 
-<!-- ===== WATERSCAPE PAINTING ===== -->
-<section class="painting-interlude reveal" style="position:relative">
-  <img
-    src="https://commons.wikimedia.org/wiki/Special:FilePath/Monet_-_Impression,_Sunrise.jpg"
-    alt="Claude Monet — Impression, Sunrise, 1872"
-    loading="lazy"
-  >
-  <span class="painting-label">Claude Monet · Impression, Sunrise</span>
-</section>
-
 <!-- ===== CONTACT ===== -->
 <section class="section section-sm reveal" id="contact">
   <div class="container-narrow">
     <div class="sec-label">Contact</div>
     <h2 class="sec-title" style="text-align:center">联系我</h2>
-    <p class="contact-text">无论你想聊聊技术、艺术，还是打个招呼——都很欢迎。</p>
+    <p class="contact-text">无论你想聊聊 AI 产品、合作机会，还是打个招呼——都很欢迎。</p>
     <div class="contact-link-row">
       <a href="mailto:your@email.com" class="contact-link-item">Email</a>
       <a href="https://github.com" class="contact-link-item" target="_blank" rel="noopener">GitHub</a>
-      <a href="#" class="contact-link-item">Blog</a>
-      <a href="#" class="contact-link-item">Twitter/X</a>
+      <span class="contact-link-item">WeChat：Xmazj_1116</span>
     </div>
   </div>
 </section>
 
 <footer class="footer-bar reveal">
-  <p>© 2026 Lin · 建于代码与画笔之间</p>
+  <p>© 2026 刘美辰 · 正在学习中</p>
 </footer>
 
 <script>
 // ===== PERSONA & CHAT =====
 const persona = {
-  name: 'Lin',
-  greeting: '你好呀，我是 Lin 的数字分身。想了解我的技术栈、做过的项目，还是想随便聊聊？',
+  name: '刘美辰',
+  greeting: '你好呀，我是刘美辰的数字分身。有什么想聊的？关于我在学的东西、我的兴趣爱好，或者想了解怎么联系我，都可以问～',
   rules: [
     {
       keywords: ['你好','嗨','hello','hi','hey'],
-      responses: ['你好！今天的光线正好，适合聊点什么。','嗨，欢迎。我这儿随时有好话题。','你好呀，有什么想聊的？']
+      responses: ['你好呀！欢迎来我的主页逛逛。','嗨～有什么想聊的？','你好！今天过得怎么样？']
     },
     {
       keywords: ['你是谁','介绍','你是谁呀','你是'],
-      responses: ['我是 Lin 的数字分身——用代码和油画一起构建的对话代理。真身可能在写代码，或在山里徒步，但我永远在这儿。']
+      responses: ['我是刘美辰的数字分身——一个正在学习用 AI 做产品的准研究生。真身可能在上课、学 vibecoding、或者在某个地方徒步，但我永远在这儿替你接话。']
     },
     {
-      keywords: ['技术','tech','stack','python','react','前端','后端','编程','代码'],
-      responses: ['Lin 做全栈开发，从 React 到 Go 都有涉及。最近对 AI 和 LLM 应用特别感兴趣。上面有四个精选项目，你可以看看。']
+      keywords: ['做什么','在做什么','在学什么','最近','学习'],
+      responses: ['刘美辰最近在学三件事：vibecoding（用 AI 写代码）、AI 产品的基础知识、还有商业化相关的内容。目标是成为一个能用 AI 做出好产品的人。']
     },
     {
-      keywords: ['项目','作品','project'],
-      responses: ['上面有四个项目：林中画室、雨声生成器、轻量知识库和 PlantMind。每个都有自己的故事。']
+      keywords: ['作品','项目','project','做了'],
+      responses: ['目前还在学习和积累阶段，还没有正式上线的大项目。但每天都在用 vibecoding 做小练习和小工具，慢慢沉淀中。想关注进度的话，可以看看她的 GitHub。']
+    },
+    {
+      keywords: ['联系','怎么联系','邮箱','微信','contact','找到'],
+      responses: ['可以通过页面底部的联系方式找到她——Email、GitHub 和微信都有。直接发邮件是最快的，微信也欢迎来加。']
     },
     {
       keywords: ['爱好','兴趣','hobby','喜欢','平时','生活'],
-      responses: ['除了写代码，Lin 画油画、泡茶、徒步。最理想的周末：上午山间，下午画室，晚上好书配好茶。']
+      responses: ['她喜欢唱歌、游泳、徒步、滑雪、潜水、旅游——基本上和水有关的、和山有关的都喜欢。是个闲不住的人。']
     },
     {
-      keywords: ['自然','森林','户外','山','植物','树','海'],
-      responses: ['Lin 对自然有种近乎偏执的热爱。据说写代码的灵感来源之一就是树的结构——分支、层次、递归。']
+      keywords: ['头发','黑金','短发','外貌'],
+      responses: ['哈哈，你注意到了！黑金渐层短毛，听起来像一只猫对不对？这也是她给人印象最深的地方之一。']
     },
     {
-      keywords: ['艺术','油画','画','水彩','画画','莫奈','塞尚','印象派'],
-      responses: ['Lin 画画，风格偏向自然风景。他说写代码和画画很像——都需要层次感、都需要留白、都需要接受不完美。']
+      keywords: ['ai','人工智能','LLM','大模型'],
+      responses: ['她对 AI 非常感兴趣，尤其是大模型在产品中的应用。最近在学怎么用 AI 辅助开发，也就是 vibecoding 那一套。觉得未来会有越来越多非技术人员用 AI 做出好东西。']
     },
     {
-      keywords: ['工作','职业','面试','hire','招聘'],
-      responses: ['Lin 有全栈开发经验，从早期创业到成熟产品都待过。想深入聊工作的事，建议直接联系他本人。']
+      keywords: ['研究生','学校','学业'],
+      responses: ['她是一个准研究生，即将开始新的学习阶段。对知识的整理和表达特别有热情。']
     },
     {
       keywords: ['谢谢','感谢','thx'],
-      responses: ['不客气！随时回来聊。','谢谢你来看这个页面。']
+      responses: ['不客气！随时回来聊。','谢谢你来看这个页面～']
     },
     {
       keywords: ['再见','拜拜','bye','走了'],
-      responses: ['下次见！这里的风景会一直等着你。','拜拜～祝你的 bug 一眼看穿。']
+      responses: ['下次见！我在这儿等你回来。','拜拜～祝你今天开心！']
     }
   ],
   defaultResponses: [
-    '嗯…这个问题有意思。Lin 可能没给我配好对应的回答。换个话题？',
-    '这个问题超出了我的知识范围。试试聊聊技术、自然、艺术？'
+    '嗯…这个问题有意思。刘美辰可能还没给我配好对应的回答。要不换个话题？试试问"你在学什么"或者"怎么联系你"？',
+    '这个问题超出我目前的知识范围了。聊聊 AI、学习、兴趣爱好？'
   ],
   thinkingDelay: [800, 2000],
   typingSpeed: 35
